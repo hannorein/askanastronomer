@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+	Miniport 2.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ask An Astronomer</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/skel.min.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Home -->
+			<div class="wrapper wrapper-style1 wrapper-first">
+				<article class="container" id="top">
+					<div class="row">
+						<div class="4u">
+							<span class="me image image-full"><img src="images/header<?=rand(1,5)?>.jpg" alt="" /></span>
+						</div>
+						<div class="8u">
+						<?
+						function isEmail($email) {
+							    return preg_match('|^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]{2,})+$|i', $email);
+						};
+
+						$email = $_POST["email"]; 
+						$name = $_POST["name"]; 
+						$name = filter_var($name, FILTER_SANITIZE_STRING); 
+						$message = $_POST["message"]; 
+						$subject = $_POST["subject"]; 
+						$issue = 0;
+						if (strlen($subject)<1){
+							$subject = "No subject given";
+						}
+						if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+							$issue = 1;
+						}else{
+							$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+						}
+						if (!isEmail($email)) {
+							$issue = 1;
+						}
+						if (strlen($email)<5){
+							$issue = 1;
+						}
+						if (strlen($message)<5){
+							$issue = 1;
+						}
+						if (strlen($name)<2){
+							$issue = 1;
+						}
+
+						if (issue==0){
+							//mail ("hanno@hanno-rein.de", $subject ,$message, "From: ".$name." <".$email.">\r\n");
+							mail ("askanastronomer@googlegroups.com", $subject ,$message, "From: ".$name." <".$email.">\r\n");
+
+						?>
+							<header>
+								<h1>Question received! </h1>
+							</header>
+							<p>Your question has been received. We will reply to you shortly.</p>
+							<a href="/#question" class="button button-big">Ask another one!</a>
+						<?}else{?>
+							<header>
+								<h1>Not quite... <?=$name?> <?=$message?> <?=$email?></h1>
+							</header>
+							<p>There was an issue with your question. Go back and try again. Make sure you give us your name and a valid e-mail address.</p>
+						<?}?>
+						</div>
+					</div>
+				</article>
+			</div>
+
+
+		<!-- About -->
+			<div class="wrapper wrapper-style3">
+				<article id="about" class="container small">
+					<footer>
+						<p id="copyright">
+							&copy; 2013 <a href="www.astro.utoronto.ca/~rein/">Hanno Rein</a> | Design: <a href="http://html5up.net/">HTML5 UP</a> | Image: ESO/Martin Pugh
+						</p>
+					</footer>
+				</article>
+			</div>
+
+
+	</body>
+</html>
