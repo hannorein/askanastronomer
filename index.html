@@ -10,6 +10,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+		<link rel="shortcut icon" href="favicon.ico" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/config.js"></script>
@@ -61,38 +62,34 @@
 						<span>These are the people who will respond to your question.</span>
 					</header>
 					<div class="container">
+<?
+$ast = array();
+$ast[0] = "<span class=\"image image-full\"><img src=\"images/hanno.jpg\" /></span><h3>Hanno Rein</h3><p>Hanno Rein is an Assistant Professor at the University of Toronto and works on extra-solar planets and Saturn's rings.</p>";
+$ast[1] = "<span class=\"image image-full\"><img src=\"images/emily.jpg\" /></span><h3>Emily Rice</h3><p>Emily Rice is a research associate at the American Museum of Natural History and an Assistant Professor at CUNY. She works on observations and models of very low mass stars.</p>";
+$ast[2] = "<span class=\"image image-full\"><img src=\"images/dave.jpg\"  /></span><h3>Dave Spiegel</h3><p>Dave Spiegel works at the Institute for Advanced Study in Princeton and is interested in planets and brown dwarfs.</p>";
+$ast[3] = "<span class=\"image image-full\"><img src=\"images/diana.jpg\" /></span><h3>Diana Valencia</h3><p>Diana Valencia is an Assistant Professor at the University of Toronto and interested in the composition and structure of super-Earths and mini-Neptunes.</p>";
+$l = count($ast);
+shuffle($ast);
+for ($i=0;$i<$l;$i++){
+	if ($i%3==0){
+?>
 						<div class="row">
+<?	
+	}
+?>
 							<div class="4u">
 								<article class="box box-style2">
-									<span class="image image-full"><img src="images/hanno.jpg" alt="" /></span>
-									<h3>Hanno Rein</h3>
-									<p>Hanno Rein is an Assistant Professor at the University of Toronto and works on extra-solar planets and Saturn's rings.</p>
+								<?=$ast[$i]?>
 								</article>
 							</div>
-							<div class="4u">
-								<article class="box box-style2">
-									<span class="image image-full"><img src="images/emily.jpg" alt="" /></span>
-									<h3>Emily Rice</h3>
-									<p>Emily Rice is a research associate at the American Museum of Natural History and an Assistant Professor at CUNY. She works on observations and models of very low mass stars.</p>
-								</article>
-							</div>
-							<div class="4u">
-								<article class="box box-style2">
-									<span class="image image-full"><img src="images/dave.jpg" alt="" /></span>
-									<h3>Dave Spiegel</h3>
-									<p>Dave Spiegel works at the Institute for Advanced Study in Princeton and is interested in planets and brown dwarfs.</p>
-								</article>
-							</div>
+<?
+	if ($i%3==2||$i==$l-1){
+?>
 						</div>
-						<div class="row">
-							<div class="4u">
-								<article class="box box-style2">
-									<span class="image image-full"><img src="images/diana.jpg" alt="" /></span>
-									<h3>Diana Valencia</h3>
-									<p>Diana Valencia is an Assistant Professor at the University of Toronto and interested in the composition and structure of super-Earths and mini-Neptunes.</p>
-								</article>
-							</div>
-						</div>
+<?	
+	}
+}
+?>
 					</div>
 				</article>
 			</div>
@@ -176,7 +173,7 @@
 				<article id="about" class="container small">
 					<header>
 						<h2>Is this for real?</h2>
-						<span>Yes! If you ask decent question, you will get a decent reply. You might be wondering why we are doing this, answering random questions from random people? Because we love answering questions! That's what we do for a living. Solving the mysteries of the universe... </span>
+						<span>Yes! If you ask decent question, you will get a decent reply. You might be wondering why we are doing this, answering random questions from random people? Because we love answering questions! That's what we do for a living: Solving the mysteries of the universe. If you are an astronomer and would like to take part, please e-mail <a href="www.astro.utoronto.ca/~rein/">Hanno Rein</a>.</span>
 					</header>
 					<footer>
 						<p id="copyright">
