@@ -25,7 +25,12 @@
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
 	</head>
 	<body>
-
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="container">
+					<li><a href="http://askanastronomer.org">Back to main page</a></li>
+				</ul>
+			</nav>
 		<!-- Home -->
 			<div class="wrapper wrapper-style1 wrapper-first">
 				<article class="container" id="top">
@@ -41,9 +46,9 @@
 
 						$email = $_POST["email"]; 
 						$name = $_POST["name"]; 
-						$name = filter_var($name, FILTER_SANITIZE_STRING); 
-						$message = $_POST["message"]; 
-						$subject = $_POST["subject"]; 
+						$name = filter_var(stripslashes($name), FILTER_SANITIZE_STRING); 
+						$message = stripslashes($_POST["message"]); 
+						$subject = stripslashes($_POST["subject"]); 
 						$issue = 0;
 						if (strlen($subject)<1){
 							$subject = "No subject given";
